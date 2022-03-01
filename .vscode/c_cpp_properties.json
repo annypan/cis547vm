@@ -6,7 +6,8 @@
                 "${workspaceFolder}/sandbox/**",
                 "/usr/include/llvm-8",
                 "/usr/include/llvm-c-8",
-                "/z3-4.8.5-x64-ubuntu-16.04/include/"
+                "/z3-4.8.5-x64-ubuntu-16.04/include/",
+                "${workspaceFolder}/cpp-practice/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
