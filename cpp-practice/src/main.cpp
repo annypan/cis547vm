@@ -4,8 +4,8 @@
 #include <set>
 #include <string>
 
-#include "User.h"
-#include "Task.h"
+#include "../include/User.h"
+#include "../include/Task.h"
 
 /** Define the following function which adds `task` for `user` in the `userTasks` map.
  * Check if `user` exists in the map. If so, add `task` to the set of tasks for that user.
@@ -13,9 +13,17 @@
  */
 void addTask(std::map<User *, std::set<Task *> > &userTasks, User *user, Task *task)
 {
-  /**
-   * TODO: Enter your code here
-   */
+  auto iter = userTasks.find(user);
+  if (iter != userTasks.end())
+  {
+    iter->second.insert(task);
+  }
+  else
+  { 
+    std::set<Task *> tasks;
+    tasks.insert(task);
+    userTasks[user] = tasks;
+  }
 }
 
 /** Define the following function to iterate over all users in the usertasks map and print all tasks of each user.
@@ -42,9 +50,26 @@ void printUsersAndTasks(std::map<User *, std::set<Task *> > userTasks)
   std::cout << "Printing out users and their tasks:\n";
   std::cout << "---------------------------------\n";
 
-  /**
-   * TODO: Enter your code here
-   */
+  for (const auto &[user, tasks] : userTasks)
+  {
+    std::cout << "User: " << user->getName() << " (" << user->getEmail() << "): " << std::endl;
+    for (auto task : tasks)
+    {
+      Misc *misc = dynamic_cast<Misc *>(task);
+      if (misc)
+      {
+        std::cout << misc->getDescription() << std::endl;
+      }
+      else
+      {
+        Bill *bill = dynamic_cast<Bill *>(task);
+        std::cout << bill->getDescription() << " of "
+                  << bill->getAmount() << " to be paid to "
+                  << bill->getPayee() << " by "
+                  << monthToString(bill->getDeadline()) << std::endl;
+      }
+    }
+  }
 
   std::cout << "=================================\n\n";
 }

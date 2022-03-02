@@ -1,4 +1,7 @@
 {
     "cmake.configureOnOpen": false,
-    "cmake.sourceDirectory": "${workspaceFolder}/cpp-practice"
+    "cmake.sourceDirectory": "${workspaceFolder}/cpp-practice",
+    "files.associations": {
+        "set": "cpp"
+    }
 }
